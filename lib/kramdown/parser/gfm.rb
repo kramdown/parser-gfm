@@ -66,7 +66,7 @@ EOF
     # This class provides a parser implementation for the GFM dialect of Markdown.
     class GFM < Kramdown::Parser::Kramdown
 
-      VERSION = '1.0.0'
+      VERSION = '1.0.1'
 
       def initialize(source, options)
         super
