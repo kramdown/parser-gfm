@@ -45,8 +45,6 @@ spec = Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3'
   s.add_dependency 'kramdown', '~> 2.0'
 
-  s.has_rdoc = true
-
   s.author = 'Thomas Leitner'
   s.email = 't_leitner@gmx.at'
   s.homepage = "https://github.com/kramdown/parser-gfm"
