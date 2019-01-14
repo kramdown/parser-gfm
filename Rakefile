@@ -64,6 +64,22 @@ task :gemspec => ['CONTRIBUTERS', 'VERSION'] do
 end
 CLOBBER << 'kramdown-parser-gfm.gemspec'
 
+task :gemfile do
+  File.open('Gemfile', 'wb') do |f|
+    f.puts <<~RUBY
+      source 'https://rubygems.org'
+      gemspec
+
+      gem 'rake', '~> 12.0'
+      gem 'minitest', '~> 5.0'
+      gem 'rubocop', '~> 0.62.0'
+    RUBY
+  end
+end
+
+desc 'Generate gemspec and Gemfile for Continuous Integration'
+task :bootstrap => [:gemspec, :gemfile]
+
 desc 'Release version ' + Kramdown::Parser::GFM::VERSION
 task :release => [:clobber, :package, :publish_files]
 
