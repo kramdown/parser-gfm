@@ -6,9 +6,13 @@ rvm:
   - 2.5
   - 2.6
 
-# TODO: Remove once kramdown 2.0 ships
 env:
-  - KD_VERSION='> 1.17'
+  # TODO: Remove once kramdown 2.0 ships
+  global:
+    - KD_VERSION='> 1.17'
+  matrix:
+    - ROUGE_VERSION='~> 2.0'
+    - ROUGE_VERSION='~> 3.0'
 
 branches:
   only:

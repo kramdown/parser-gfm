@@ -75,6 +75,7 @@ task :gemfile do
 
       gem 'rake', '~> 12.0'
       gem 'minitest', '~> 5.0'
+      gem 'rouge', ENV['ROUGE_VERSION']
       gem 'rubocop', '~> 0.62.0'
     RUBY
   end
