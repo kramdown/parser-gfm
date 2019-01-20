@@ -33,9 +33,6 @@ file 'CONTRIBUTERS' do
   `git log | grep ^Author: | sed 's/^Author: //' | sort | uniq -c | sort -nr >> CONTRIBUTERS`
 end
 
-# TODO: Remove once kramdown 2.0 ships
-KD_VERSION = ENV['KD_VERSION'] || '~> 2.0'
-
 spec = Gem::Specification.new do |s|
   s.name = 'kramdown-parser-gfm'
   s.version = Kramdown::Parser::GFM::VERSION
@@ -46,7 +43,7 @@ spec = Gem::Specification.new do |s|
 
   s.require_path = 'lib'
   s.required_ruby_version = '>= 2.3'
-  s.add_dependency 'kramdown', KD_VERSION
+  s.add_dependency 'kramdown', '~> 2.0'
 
   s.has_rdoc = true
 

@@ -7,9 +7,6 @@ rvm:
   - 2.6
 
 env:
-  # TODO: Remove once kramdown 2.0 ships
-  global:
-    - KD_VERSION='> 1.17'
   matrix:
     - ROUGE_VERSION='~> 2.0'
     - ROUGE_VERSION='~> 3.0'
@@ -20,7 +17,7 @@ branches:
 
 before_install:
   - gem update --system
-  - gem install kramdown --pre # FIXME: Install kramdown 2.0 once it ships
+  - gem install kramdown
   - 'gem install rake && rake bootstrap'
 
 notifications:
