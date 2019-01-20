@@ -1,27 +1,26 @@
 # kramdown GFM parser
 
-This is a parser for [kramdown](https://kramdown.gettalong.org) that converts
-Markdown documents in the GFM dialect to HTML.
+This is a parser for [kramdown](https://kramdown.gettalong.org) that converts Markdown documents
+in the GFM dialect to HTML.
 
-Note: Until kramdown version 2.0.0 this parser was part of the kramdown
-distribution.
+Note: Until kramdown version 2.0.0 this parser was part of the kramdown distribution.
 
 
 ## Installation
 
-~~~ruby
+```bash
 gem install kramdown-parser-gfm
-~~~
+```
 
 
 ## Usage
 
-~~~ruby
+```ruby
 require 'kramdown'
 require 'kramdown/parser/gfm'
 
 Kramdown::Document.new(text, input: 'GFM').to_html
-~~~
+```
 
 
 ## Documentation
@@ -83,10 +82,12 @@ The GFM parser provides the following options:
 
 ## Development
 
-Clone the git repository and you are good to go. You probably want to install
-`rake` so that you can use the provided rake tasks.
+Clone the git repository and you are good to go. You'll probably want to install `rake` to use the
+provided rake tasks.
+
+Run `rake --tasks` to view a list of available tasks.
 
 
 ## License
 
-MIT - see the **COPYING** file.
+MIT - see the [**COPYING**](COPYING) file.
