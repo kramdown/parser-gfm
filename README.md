@@ -34,7 +34,7 @@ At the moment this parser is based on the kramdown parser, with the following ch
 * Blank lines between paragraphs and other block elements are not needed by default (see option
   `gfm_quirks`)
 
-Please note that the GFM parser tries to mimic the parser used at Github which means that for some
+Please note that the GFM parser tries to mimic the parser used at GitHub which means that for some
 special cases broken behaviour is the expected behaviour.
 
 Here is an example:
@@ -57,7 +57,7 @@ The GFM parser provides the following options:
 
 * `gfm_quirks`: Enables a set of GFM specific quirks (default: `paragraph_end`)
 
-  The way how GFM is transformed on Github often differs from the way kramdown does things. Many of
+  The way how GFM is transformed on GitHub often differs from the way kramdown does things. Many of
   these differences are negligible but others are not.
 
   This option allows one to enable/disable certain GFM quirks, i.e. ways in which GFM parsing
