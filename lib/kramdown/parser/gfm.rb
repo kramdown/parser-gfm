@@ -185,7 +185,7 @@ EOF
       define_parser(:codeblock_fenced_gfm, FENCED_CODEBLOCK_START, nil, 'parse_codeblock_fenced')
 
       STRIKETHROUGH_DELIM = /~~/
-      STRIKETHROUGH_MATCH = /#{STRIKETHROUGH_DELIM}[^\s~](.*?)[^\s~]#{STRIKETHROUGH_DELIM}/m
+      STRIKETHROUGH_MATCH = /#{STRIKETHROUGH_DELIM}(?!\s|~).*?[^\s~]#{STRIKETHROUGH_DELIM}/m
       define_parser(:strikethrough_gfm, STRIKETHROUGH_MATCH, '~~')
 
       def parse_strikethrough_gfm
