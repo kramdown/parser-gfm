@@ -237,8 +237,10 @@ module Kramdown
       ESCAPED_CHARS_GFM = /\\([\\.*_+`<>()\[\]{}#!:\|"'\$=\-~])/
       define_parser(:escaped_chars_gfm, ESCAPED_CHARS_GFM, '\\\\', :parse_escaped_chars)
 
-      PARAGRAPH_END_GFM = /#{LAZY_END}|#{LIST_START}|#{ATX_HEADER_START}|
-                           #{DEFINITION_LIST_START}|#{BLOCKQUOTE_START}|#{FENCED_CODEBLOCK_START}/x
+      PARAGRAPH_END_GFM = Regexp.union(
+        LAZY_END, LIST_START, ATX_HEADER_START, DEFINITION_LIST_START,
+        BLOCKQUOTE_START, FENCED_CODEBLOCK_START
+      )
 
       def paragraph_end
         @paragraph_end
