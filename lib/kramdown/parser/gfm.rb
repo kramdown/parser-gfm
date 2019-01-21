@@ -165,7 +165,8 @@ module Kramdown
         result.gsub!(NON_WORD_RE, '')
         result.tr!(" \t", '-')
         @id_counter[result] += 1
-        result << (@id_counter[result] > 0 ? "-#{@id_counter[result]}" : '')
+        counter_result = @id_counter[result]
+        result << (counter_result > 0 ? "-#{counter_result}" : '')
         @options[:auto_id_prefix] + result
       end
 
