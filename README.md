@@ -17,7 +17,7 @@ gem install kramdown-parser-gfm
 
 ```ruby
 require 'kramdown'
-require 'kramdown/parser/gfm'
+require 'kramdown-parser-gfm'
 
 Kramdown::Document.new(text, input: 'GFM').to_html
 ```
