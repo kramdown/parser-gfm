@@ -55,7 +55,7 @@ module Kramdown
       Used by: GFM parser
     EOF
       val = simple_array_validator(val, :gfm_quirks)
-      val.map! {|v| str_to_sym(v.to_s)}
+      val.map! { |v| str_to_sym(v.to_s) }
       val
     end
 
@@ -75,14 +75,15 @@ module Kramdown
         @options[:auto_id_stripping] = true
         @id_counter = Hash.new(-1)
 
-        @span_parsers.delete(:line_break) if @options[:hard_wrap]
+        @span_parsers.delete(:line_break)       if @options[:hard_wrap]
         @span_parsers.delete(:typographic_syms) if @options[:gfm_quirks].include?(:no_auto_typographic)
+
         if @options[:gfm_quirks].include?(:paragraph_end)
           atx_header_parser = :atx_header_gfm_quirk
-          @paragraph_end = self.class::PARAGRAPH_END_GFM
+          @paragraph_end    = self.class::PARAGRAPH_END_GFM
         else
           atx_header_parser = :atx_header_gfm
-          @paragraph_end = self.class::PARAGRAPH_END
+          @paragraph_end    = self.class::PARAGRAPH_END
         end
 
         {codeblock_fenced: :codeblock_fenced_gfm,
@@ -152,7 +153,7 @@ module Kramdown
                           ::Kramdown::Utils::Entities.entity(child.value.to_s).char
                         end
           else
-            child.children.each {|c| append_text.call(c) }
+            child.children.each { |c| append_text.call(c) }
           end
         end
 
@@ -166,9 +167,11 @@ module Kramdown
         result = text.downcase
         result.gsub!(NON_WORD_RE, '')
         result.tr!(" \t", '-')
+
         @id_counter[result] += 1
         counter_result = @id_counter[result]
         result << (counter_result > 0 ? "-#{counter_result}" : '')
+
         @options[:auto_id_prefix] + result
       end
 
@@ -181,6 +184,7 @@ module Kramdown
         text, id = parse_header_contents
         text.sub!(/[\t ]#+\z/, '') && text.rstrip!
         return false if text.empty?
+
         add_header(@src["level"].length, text, id)
         true
       end
@@ -214,17 +218,18 @@ module Kramdown
       # elements).
       def parse_list
         super
-        current_list = @tree.children.select {|element| [:ul, :ol].include?(element.type) }.last
+        current_list = @tree.children.select { |element| [:ul, :ol].include?(element.type) }.last
 
-        is_tasklist = false
+        is_tasklist   = false
         box_unchecked = '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />'
-        box_checked = '<input type="checkbox" class="task-list-item-checkbox" ' \
+        box_checked   = '<input type="checkbox" class="task-list-item-checkbox" ' \
           'disabled="disabled" checked="checked" />'
 
         current_list.children.each do |li|
           next unless !li.children.empty? && li.children[0].type == :p
+
           # li -> p -> raw_text
-          checked = li.children[0].children[0].value.gsub!(/\A\s*\[ \]\s+/, box_unchecked)
+          checked   = li.children[0].children[0].value.gsub!(/\A\s*\[ \]\s+/,  box_unchecked)
           unchecked = li.children[0].children[0].value.gsub!(/\A\s*\[x\]\s+/i, box_checked)
           is_tasklist ||= checked || unchecked
 

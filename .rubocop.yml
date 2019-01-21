@@ -90,6 +90,8 @@ Style/YodaCondition:
 Style/EmptyElse:
   EnforcedStyle: empty
 
+Style/Documentation:
+  Enabled: false
 
 Style/GuardClause:
   Enabled: false # false alarms
@@ -133,9 +135,6 @@ Style/SpecialGlobalVars:
 Style/MultipleComparison:
   Enabled: false # why should an array be created? especially if only two items are compared
 
-Style/AccessModifierDeclarations:
-  Enabled: false
-
 Style/WhileUntilModifier:
   Enabled: false # I prefer to use either one or the other, depending on context
 
@@ -147,7 +146,8 @@ Layout/AlignHash:
   EnforcedLastArgumentHashStyle: ignore_implicit
 
 Layout/SpaceInsideBlockBraces:
-  SpaceBeforeBlockParameters: false
+  EnforcedStyle: space
+  SpaceBeforeBlockParameters: space
 
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
@@ -177,11 +177,16 @@ Layout/IndentAssignment:
   Enabled: false # false alarms
 
 
+Lint/LiteralAsCondition:
+  Enabled: false # we use while true
+
+
+Naming/FileName:
+  Exclude:
+    - 'lib/kramdown-parser-gfm.rb'
+
 Naming/HeredocDelimiterNaming:
   Enabled: false # we like our delimiters short and obvious
 
 Naming/UncommunicativeMethodParamName:
   Enabled: false # for points the names x,y are perfectly reasonable
-
-Lint/LiteralAsCondition:
-  Enabled: false # we use while true
