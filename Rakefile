@@ -4,7 +4,7 @@ require 'rubygems/package_task'
 require 'fileutils'
 require 'rake/clean'
 require 'rake/testtask'
-require_relative 'lib/kramdown/parser/gfm'
+require_relative 'lib/kramdown-parser-gfm'
 
 task :default => :test
 Rake::TestTask.new do |test|

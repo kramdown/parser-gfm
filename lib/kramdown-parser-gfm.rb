@@ -7,4 +7,4 @@
 #++
 #
 
-require 'kramdown/parser/gfm'
+require_relative 'kramdown/parser/gfm'
