@@ -68,6 +68,8 @@ module Kramdown
 
       VERSION = '1.0.1'
 
+      attr_reader :paragraph_end
+
       def initialize(source, options)
         super
         @options[:auto_id_stripping] = true
@@ -241,10 +243,6 @@ module Kramdown
         LAZY_END, LIST_START, ATX_HEADER_START, DEFINITION_LIST_START,
         BLOCKQUOTE_START, FENCED_CODEBLOCK_START
       )
-
-      def paragraph_end
-        @paragraph_end
-      end
 
     end
   end

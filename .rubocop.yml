@@ -103,9 +103,6 @@ Style/Next:
 Style/ParallelAssignment:
   Enabled: false # not really needed
 
-Style/TrivialAccessors:
-  Enabled: false
-
 Style/NestedTernaryOperator:
   Enabled: false # compact nested ternary operators are okay
 
