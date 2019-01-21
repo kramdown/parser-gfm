@@ -224,7 +224,7 @@ module Kramdown
           # li -> p -> raw_text
           checked = li.children[0].children[0].value.gsub!(/\A\s*\[ \]\s+/, box_unchecked)
           unchecked = li.children[0].children[0].value.gsub!(/\A\s*\[x\]\s+/i, box_checked)
-          is_tasklist ||= (!checked.nil? || !unchecked.nil?)
+          is_tasklist ||= checked || unchecked
 
           li.attr['class'] = 'task-list-item' if is_tasklist
         end
