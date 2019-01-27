@@ -151,7 +151,7 @@ module Kramdown
         item.options[:raw_text] = raw_text
       end
 
-      NON_WORD_RE = /[^\p{Word}\- \t]/
+      NON_WORD_RE = /[^\p{Word}\- \t]/.freeze
 
       def generate_gfm_header_id(text)
         result = text.downcase
@@ -165,7 +165,7 @@ module Kramdown
         @options[:auto_id_prefix] + result
       end
 
-      ATX_HEADER_START = /^(?<level>\#{1,6})[\t ]+(?<contents>.*)\n/
+      ATX_HEADER_START = /^(?<level>\#{1,6})[\t ]+(?<contents>.*)\n/.freeze
       define_parser(:atx_header_gfm, ATX_HEADER_START, nil, 'parse_atx_header')
       define_parser(:atx_header_gfm_quirk, ATX_HEADER_START)
 
@@ -179,12 +179,12 @@ module Kramdown
         true
       end
 
-      FENCED_CODEBLOCK_START = /^[ ]{0,3}[~`]{3,}/
-      FENCED_CODEBLOCK_MATCH = /^[ ]{0,3}(([~`]){3,})\s*?((\S+?)(?:\?\S*)?)?\s*?\n(.*?)^[ ]{0,3}\1\2*\s*?\n/m
+      FENCED_CODEBLOCK_START = /^[ ]{0,3}[~`]{3,}/.freeze
+      FENCED_CODEBLOCK_MATCH = /^[ ]{0,3}(([~`]){3,})\s*?((\S+?)(?:\?\S*)?)?\s*?\n(.*?)^[ ]{0,3}\1\2*\s*?\n/m.freeze
       define_parser(:codeblock_fenced_gfm, FENCED_CODEBLOCK_START, nil, 'parse_codeblock_fenced')
 
-      STRIKETHROUGH_DELIM = /~~/
-      STRIKETHROUGH_MATCH = /#{STRIKETHROUGH_DELIM}(?!\s|~).*?[^\s~]#{STRIKETHROUGH_DELIM}/m
+      STRIKETHROUGH_DELIM = /~~/.freeze
+      STRIKETHROUGH_MATCH = /#{STRIKETHROUGH_DELIM}(?!\s|~).*?[^\s~]#{STRIKETHROUGH_DELIM}/m.freeze
       define_parser(:strikethrough_gfm, STRIKETHROUGH_MATCH, '~~')
 
       def parse_strikethrough_gfm
@@ -203,7 +203,7 @@ module Kramdown
         el
       end
 
-      LIST_TYPES = [:ul, :ol]
+      LIST_TYPES = [:ul, :ol].freeze
 
       # To handle task-lists we override the parse method for lists, converting matching text into
       # checkbox input elements where necessary (as well as applying classes to the ul/ol and li
@@ -235,7 +235,7 @@ module Kramdown
         true
       end
 
-      ESCAPED_CHARS_GFM = /\\([\\.*_+`<>()\[\]{}#!:\|"'\$=\-~])/
+      ESCAPED_CHARS_GFM = /\\([\\.*_+`<>()\[\]{}#!:\|"'\$=\-~])/.freeze
       define_parser(:escaped_chars_gfm, ESCAPED_CHARS_GFM, '\\\\', :parse_escaped_chars)
 
       PARAGRAPH_END_GFM = Regexp.union(
@@ -262,6 +262,7 @@ module Kramdown
 
         children
       end
+
     end
   end
 end
