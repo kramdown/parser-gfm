@@ -116,9 +116,12 @@ module Kramdown
               new_element_options = {location: child.options[:location] + index}
 
               children << Element.new(:text, (index > 0 ? "\n#{line}" : line), nil, new_element_options)
-              children << Element.new(:br, nil, nil, new_element_options) if index < lines.size - 2 ||
-                (index == lines.size - 2 && !omit_trailing_br)
+
+              if index < lines.size - 2 || (index == lines.size - 2 && !omit_trailing_br)
+                children << Element.new(:br, nil, nil, new_element_options)
+              end
             end
+
             children
           elsif child.type == :html_element
             child
