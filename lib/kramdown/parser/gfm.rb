@@ -96,6 +96,8 @@ module Kramdown
         i = @span_parsers.index(:escaped_chars)
         @span_parsers[i] = :escaped_chars_gfm if i
         @span_parsers << :strikethrough_gfm
+
+        @hard_line_break = "#{@options[:hard_wrap] ? '' : '\\'}\n"
       end
 
       def parse
@@ -105,10 +107,9 @@ module Kramdown
 
       def update_elements(element)
         element.children.map! do |child|
-          if child.type == :text &&
-              child.value.include?(hard_line_break = "#{@options[:hard_wrap] ? '' : '\\'}\n")
+          if child.type == :text && child.value.include?(@hard_line_break)
             children = []
-            lines = child.value.split(hard_line_break, -1)
+            lines = child.value.split(@hard_line_break, -1)
             omit_trailing_br = (Kramdown::Element.category(element) == :block &&
                                 element.children[-1] == child && lines[-1].empty?)
             lines.each_with_index do |line, index|
