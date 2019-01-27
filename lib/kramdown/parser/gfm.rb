@@ -174,7 +174,7 @@ module Kramdown
 
         @id_counter[result] += 1
         counter_result = @id_counter[result]
-        result << (counter_result > 0 ? "-#{counter_result}" : '')
+        result << "-#{counter_result}" if counter_result > 0
 
         @options[:auto_id_prefix] + result
       end
