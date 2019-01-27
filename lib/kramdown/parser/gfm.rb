@@ -230,11 +230,13 @@ module Kramdown
           'disabled="disabled" checked="checked" />'
 
         current_list.children.each do |li|
-          next unless !li.children.empty? && li.children[0].type == :p
+          list_items = li.children
+          next unless !list_items.empty? && list_items[0].type == :p
 
           # li -> p -> raw_text
-          checked   = li.children[0].children[0].value.gsub!(/\A\s*\[ \]\s+/,  box_unchecked)
-          unchecked = li.children[0].children[0].value.gsub!(/\A\s*\[x\]\s+/i, box_checked)
+          descendant = list_items[0].children[0].value
+          checked    = descendant.gsub!(/\A\s*\[ \]\s+/,  box_unchecked)
+          unchecked  = descendant.gsub!(/\A\s*\[x\]\s+/i, box_checked)
           is_tasklist ||= checked || unchecked
 
           li.attr['class'] = 'task-list-item' if is_tasklist
