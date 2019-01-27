@@ -108,21 +108,7 @@ module Kramdown
       def update_elements(element)
         element.children.map! do |child|
           if child.type == :text && child.value.include?(@hard_line_break)
-            children = []
-            lines = child.value.split(@hard_line_break, -1)
-            omit_trailing_br = (lines[-1].empty? && Kramdown::Element.category(element) == :block &&
-                                element.children[-1] == child)
-            lines.each_with_index do |line, index|
-              new_element_options = {location: child.options[:location] + index}
-
-              children << Element.new(:text, (index > 0 ? "\n#{line}" : line), nil, new_element_options)
-
-              if index < lines.size - 2 || (index == lines.size - 2 && !omit_trailing_br)
-                children << Element.new(:br, nil, nil, new_element_options)
-              end
-            end
-
-            children
+            update_text_type(element, child)
           elsif child.type == :html_element
             child
           elsif child.type == :header && @options[:auto_ids] && !child.attr.key?('id')
@@ -255,6 +241,25 @@ module Kramdown
         BLOCKQUOTE_START, FENCED_CODEBLOCK_START
       )
 
+      private
+
+      def update_text_type(element, child)
+        children = []
+        lines = child.value.split(@hard_line_break, -1)
+        omit_trailing_br = (lines[-1].empty? && Kramdown::Element.category(element) == :block &&
+                            element.children[-1] == child)
+
+        lines.each_with_index do |line, index|
+          new_element_options = {location: child.options[:location] + index}
+          children << Element.new(:text, (index > 0 ? "\n#{line}" : line), nil, new_element_options)
+
+          if index < lines.size - 2 || (index == lines.size - 2 && !omit_trailing_br)
+            children << Element.new(:br, nil, nil, new_element_options)
+          end
+        end
+
+        children
+      end
     end
   end
 end
