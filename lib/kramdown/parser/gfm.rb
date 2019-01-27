@@ -110,8 +110,8 @@ module Kramdown
           if child.type == :text && child.value.include?(@hard_line_break)
             children = []
             lines = child.value.split(@hard_line_break, -1)
-            omit_trailing_br = (Kramdown::Element.category(element) == :block &&
-                                element.children[-1] == child && lines[-1].empty?)
+            omit_trailing_br = (lines[-1].empty? && Kramdown::Element.category(element) == :block &&
+                                element.children[-1] == child)
             lines.each_with_index do |line, index|
               new_element_options = {location: child.options[:location] + index}
 
