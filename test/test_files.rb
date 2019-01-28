@@ -18,13 +18,13 @@ Encoding.default_external = 'utf-8'
 class TestFiles < Minitest::Test
 
   # Generate test methods for gfm-to-html conversion
-  Dir[File.dirname(__FILE__) + '/testcases/**/*.text'].each do |text_file|
+  Dir[__dir__ + '/testcases/**/*.text'].each do |text_file|
     basename = text_file.sub(/\.text$/, '')
 
     html_file = basename + '.html'
     next unless File.exist?(html_file)
 
-    define_method('test_gfm_' + text_file.tr('.', '_') + "_to_html") do
+    define_method('test_gfm_' + File.basename(text_file, '.*') + '_to_html') do
       opts_file = basename + '.options'
       opts_file = File.join(File.dirname(html_file), 'options') if !File.exist?(opts_file)
       options = File.exist?(opts_file) ? YAML::load(File.read(opts_file)) : {auto_ids: false, footnote_nr: 1}
