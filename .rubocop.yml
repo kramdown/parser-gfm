@@ -5,7 +5,7 @@ AllCops:
 
 
 Metrics/LineLength:
-  Max: 110 # Preferred length is 100
+  Max: 120 # Preferred length is 100
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
