@@ -10,7 +10,7 @@
 require 'kramdown/options'
 require 'kramdown/parser/kramdown'
 
-require_relative 'gfm_options'
+require_relative 'gfm/options'
 
 module Kramdown
   module Parser
