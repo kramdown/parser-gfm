@@ -76,11 +76,28 @@ task :gemfile do
   end
 end
 
+task :changelog do
+  changelog_file = File.expand_path('CHANGELOG.md', __dir__)
+  release_stamp  = "#{Kramdown::Parser::GFM::VERSION} / #{Time.now.strftime('%Y-%m-%d')}"
+  changelog_text = File.read(changelog_file).sub!("## HEAD\n\n", "## #{release_stamp}\n\n")
+
+  if changelog_text
+    puts 'Updating changelog for release..'
+    File.open(changelog_file, 'wb') { |f| f.puts(changelog_text) }
+    puts ''
+    puts 'Updating Git index..'
+    sh "git add #{changelog_file} --update"
+  else
+    puts 'No changes logged since last release!'
+    abort
+  end
+end
+
 desc 'Generate gemspec and Gemfile for Continuous Integration'
 task :bootstrap => [:gemspec, :gemfile]
 
 desc 'Release version ' + Kramdown::Parser::GFM::VERSION
-task :release => [:clobber, :package, :publish_files]
+task :release => [:changelog, :clobber, :package, :publish_files]
 
 desc "Upload the release to Rubygems"
 task :publish_files => [:package] do

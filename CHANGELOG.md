@@ -10,3 +10,15 @@
 * Define test methods with a shorter name ([#7](https://github.com/kramdown/parser-gfm/pull/7))
 * Load the main file in the gem ([#10](https://github.com/kramdown/parser-gfm/pull/10))
 * Fix strikethrough a single character ([#9](https://github.com/kramdown/parser-gfm/pull/9))
+
+
+## 1.0.1 / 2019-01-13
+
+### Bug Fixes
+
+* Add missing loader file
+
+
+## 1.0.0 / 2019-01-11
+
+* Initial version based on kramdown 1.17.0
