@@ -28,9 +28,10 @@ end
 CLOBBER << 'CONTRIBUTERS'
 file 'CONTRIBUTERS' do
   puts "Generating CONTRIBUTERS file"
-  `echo "  Count Name" > CONTRIBUTERS`
-  `echo "======= ====" >> CONTRIBUTERS`
-  `git log | grep ^Author: | sed 's/^Author: //' | sort | uniq -c | sort -nr >> CONTRIBUTERS`
+  `echo   Count Name > CONTRIBUTERS`
+  `echo ======= ==== >> CONTRIBUTERS`
+  merge_maintainer_entries = "sed 's/ashmaroli@users.noreply.github.com/ashmaroli@gmail.com/'"
+  %x(git log | grep ^Author: | sed 's/^Author: //' | #{merge_maintainer_entries} | sort | uniq -c | sort -nr >> CONTRIBUTERS)
 end
 
 spec = Gem::Specification.new do |s|
