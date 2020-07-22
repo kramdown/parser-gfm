@@ -69,9 +69,9 @@ task :gemfile do
       source 'https://rubygems.org'
       gemspec
 
-      gem 'rake', '~> 12.0'
+      gem 'rake', '~> 13.0'
       gem 'minitest', '~> 5.0'
-      gem 'rouge', ENV['ROUGE_VERSION']
+      gem 'rouge', '~> 3.0'
       gem 'rubocop', '~> 0.62.0'
     RUBY
   end
