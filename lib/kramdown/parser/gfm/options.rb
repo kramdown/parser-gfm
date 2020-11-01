@@ -51,9 +51,9 @@ module Kramdown
       Default: paragraph_end
       Used by: GFM parser
     EOF
-      val = simple_array_validator(val, :gfm_quirks)
-      val.map! { |v| str_to_sym(v.to_s) }
-      val
+      simple_array_validator(val, :gfm_quirks).map! do |v|
+        v.kind_of?(Symbol) ? v : str_to_sym(v.to_s)
+      end
     end
 
   end
