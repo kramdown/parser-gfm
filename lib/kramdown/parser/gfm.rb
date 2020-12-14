@@ -63,12 +63,14 @@ module Kramdown
             update_text_type(element, child)
           elsif child.type == :html_element
             child
-          elsif child.type == :header && @options[:auto_ids] && @options[:transliterated_header_ids]
-            # Let the kramdown converter create the ID
-            child
-          elsif child.type == :header && @options[:auto_ids] && !child.attr.key?('id')
-            child.attr['id'] = generate_gfm_header_id(child.options[:raw_text])
-            child
+          elsif child.type == :header && @options[:auto_ids]
+            if @options[:transliterated_header_ids]
+              # Let the kramdown converter create the ID
+              child
+            elsif !child.attr.key?('id')
+              child.attr['id'] = generate_gfm_header_id(child.options[:raw_text])
+              child
+            end
           else
             update_elements(child)
             child
