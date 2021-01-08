@@ -73,6 +73,7 @@ task :gemfile do
       gem 'minitest', '~> 5.0'
       gem 'rouge', '~> 3.0'
       gem 'rubocop', '~> 0.62.0'
+      gem 'stringex', '~> 2.8.5'
     RUBY
   end
 end
