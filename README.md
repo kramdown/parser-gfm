@@ -1,7 +1,7 @@
 # kramdown GFM parser
 
 This is a parser for [kramdown](https://kramdown.gettalong.org) that converts Markdown documents
-in the GFM dialect to HTML.
+in the [GitHub Flavored Markdown (GFM)](https://github.github.com/gfm/) dialect to HTML.
 
 Note: Until kramdown version 2.0.0 this parser was part of the kramdown distribution.
 
