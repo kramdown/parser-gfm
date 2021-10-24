@@ -30,3 +30,5 @@ jobs:
           gem install kramdown rake
           rake bootstrap
           bundle install
+      - name: Run Tests
+        run: bundle exec rake
