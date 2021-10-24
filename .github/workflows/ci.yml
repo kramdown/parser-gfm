@@ -10,13 +10,18 @@ on:
 
 jobs:
   ci:
+    name: "Unit Tests (Ruby ${{ matrix.ruby_version }})"
     runs-on: "ubuntu-latest"
     strategy:
       fail-fast: false
       matrix:
         ruby_version:
-        - 2.5
-        - 2.7
+        - "2.3"
+        - "2.4"
+        - "2.5"
+        - "2.6"
+        - "2.7"
+        - "3.0"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -24,3 +29,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
+      - name: Install Dependencies
+        run: |
+          gem install kramdown rake
+          rake bootstrap
+          bundle install
+      - name: Run Tests
+        run: bundle exec rake
