@@ -10,6 +10,7 @@ on:
 
 jobs:
   ci:
+    name: "Unit Tests (Ruby ${{ matrix.ruby_version }})"
     runs-on: "ubuntu-latest"
     strategy:
       fail-fast: false
@@ -24,3 +25,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
+      - name: Install Dependencies
+        run: |
+          gem install rake
+          rake bootstrap
+          bundle install
