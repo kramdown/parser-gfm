@@ -27,6 +27,6 @@ jobs:
           ruby-version: ${{ matrix.ruby_version }}
       - name: Install Dependencies
         run: |
-          gem install rake
+          gem install kramdown rake
           rake bootstrap
           bundle install
