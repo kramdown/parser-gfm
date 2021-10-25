@@ -43,7 +43,7 @@ spec = Gem::Specification.new do |s|
   s.files = PKG_FILES.to_a
 
   s.require_path = 'lib'
-  s.required_ruby_version = '>= 2.3'
+  s.required_ruby_version = '>= 2.5'
   s.add_dependency 'kramdown', '~> 2.0'
 
   s.author = 'Thomas Leitner'
