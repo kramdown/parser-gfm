@@ -27,10 +27,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
-      - name: Install Dependencies
-        run: |
-          gem install kramdown rake
-          rake bootstrap
-          bundle install
+          bundler-cache: true
       - name: Run Tests
         run: bundle exec rake

@@ -15,10 +15,6 @@ end
 
 # Release tasks and development tasks ############################################
 
-SUMMARY = 'kramdown-parser-gfm provides a kramdown parser for the GFM dialect of Markdown'
-
-PKG_FILES = FileList.new(['COPYING', 'VERSION', 'CONTRIBUTERS', 'lib/**/*.rb', 'test/**/*'])
-
 CLOBBER << "VERSION"
 file 'VERSION' do
   puts "Generating VERSION file"
@@ -34,49 +30,18 @@ file 'CONTRIBUTERS' do
   %x(git log | grep ^Author: | sed 's/^Author: //' | #{merge_maintainer_entries} | sort | uniq -c | sort -nr >> CONTRIBUTERS)
 end
 
-spec = Gem::Specification.new do |s|
-  s.name = 'kramdown-parser-gfm'
-  s.version = Kramdown::Parser::GFM::VERSION
-  s.summary = SUMMARY
-  s.license = 'MIT'
-
-  s.files = PKG_FILES.to_a
-
-  s.require_path = 'lib'
-  s.required_ruby_version = '>= 2.5'
-  s.add_dependency 'kramdown', '~> 2.0'
-
-  s.author = 'Thomas Leitner'
-  s.email = 't_leitner@gmx.at'
-  s.homepage = "https://github.com/kramdown/parser-gfm"
-end
+# initialize `spec` for backwards compatibility.
+gemspec_file = File.expand_path('kramdown-parser-gfm.gemspec', __dir__)
+gemspec_contents = File.read(gemspec_file)
+spec = eval(gemspec_contents, TOPLEVEL_BINDING.dup, gemspec_file)
 
 Gem::PackageTask.new(spec) do |pkg|
   pkg.need_zip = true
   pkg.need_tar = true
 end
 
-task :gemspec => ['CONTRIBUTERS', 'VERSION'] do
-  print "Generating Gemspec\n"
-  contents = spec.to_ruby
-  File.write("kramdown-parser-gfm.gemspec", contents, mode: 'w+')
-end
-CLOBBER << 'kramdown-parser-gfm.gemspec'
-
-task :gemfile do
-  File.open('Gemfile', 'wb') do |f|
-    f.puts <<~RUBY
-      source 'https://rubygems.org'
-      gemspec
-
-      gem 'gemoji', '~> 3.0'
-      gem 'rake', '~> 13.0'
-      gem 'minitest', '~> 5.0'
-      gem 'rouge', '~> 3.0'
-      gem 'rubocop', '~> 0.62.0'
-      gem 'stringex', '~> 2.8.5'
-    RUBY
-  end
+task :gemspec_test do
+  puts spec.to_ruby
 end
 
 task :changelog do
@@ -95,9 +60,6 @@ task :changelog do
     abort
   end
 end
-
-desc 'Generate gemspec and Gemfile for Continuous Integration'
-task :bootstrap => [:gemspec, :gemfile]
 
 desc 'Release version ' + Kramdown::Parser::GFM::VERSION
 task :release => [:changelog, :clobber, :package, :publish_files]
