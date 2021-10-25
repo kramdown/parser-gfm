@@ -12,6 +12,7 @@ require 'gemoji'
 module Kramdown
   module Parser
     class GFM
+
       EMOJI_NAMES   = Emoji.all.flat_map(&:aliases).freeze
       REGISTRY      = EMOJI_NAMES.zip(EMOJI_NAMES).to_h.freeze
       EMOJI_PATTERN = /:(\w+):/
@@ -47,7 +48,7 @@ module Kramdown
       private
 
       def emoji_src(name)
-        base  = @options[:gfm_emoji_opts][:asset_path] || DEFAULT_ASSET_PATH
+        base = @options[:gfm_emoji_opts][:asset_path] || DEFAULT_ASSET_PATH
         File.join(base, Emoji.find_by_alias(name).image_filename)
       end
 

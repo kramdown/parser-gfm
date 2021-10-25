@@ -21,14 +21,12 @@ module Kramdown
       VERSION = '1.1.0'
 
       EXTENSIONS = {
-        :emoji => 'gfm/emoji_parser'
+        emoji: 'gfm/emoji_parser',
       }.freeze
 
       LOADED_EXTENSIONS = {}
 
       private_constant :EXTENSIONS, :LOADED_EXTENSIONS
-
-      #
 
       def self.load_extension(id)
         return LOADED_EXTENSIONS[id] if LOADED_EXTENSIONS.key?(id)
@@ -39,8 +37,6 @@ module Kramdown
           false
         end
       end
-
-      #
 
       attr_reader :paragraph_end
 
