@@ -20,6 +20,28 @@ module Kramdown
 
       VERSION = '1.1.0'
 
+      EXTENSIONS = {
+        :emoji => 'gfm/emoji_parser'
+      }.freeze
+
+      LOADED_EXTENSIONS = {}
+
+      private_constant :EXTENSIONS, :LOADED_EXTENSIONS
+
+      #
+
+      def self.load_extension(id)
+        return LOADED_EXTENSIONS[id] if LOADED_EXTENSIONS.key?(id)
+
+        LOADED_EXTENSIONS[id] ||= begin
+          require_relative EXTENSIONS[id]
+        rescue LoadError
+          false
+        end
+      end
+
+      #
+
       attr_reader :paragraph_end
 
       def initialize(source, options)
@@ -50,6 +72,10 @@ module Kramdown
         @span_parsers << :strikethrough_gfm
 
         @hard_line_break = "#{@options[:hard_wrap] ? '' : '\\'}\n"
+
+        return unless @options[:gfm_emojis]
+
+        self.class.load_extension(:emoji) && @span_parsers.unshift(:emoji)
       end
 
       def parse

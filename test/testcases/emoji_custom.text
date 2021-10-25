@@ -1,0 +1,23 @@
+Lorem ipsum dolor :smile: sit amet
+
+Lorem ipsum dolor :custom: sit amet
+
+Lorem ipsum dolor `:smile:` sit amet
+
+Lorem ipsum dolor \:smile\: sit amet
+
+Lorem ipsum dolor \:smile: sit amet
+
+Lorem ipsum dolor :smile\: sit amet
+
+```
+Lorem ipsum dolor :smile: sit amet
+```
+
+~~~
+Lorem ipsum dolor :smile: sit amet
+~~~
+
+[:tada:](/foo.html)
+
+<a href="./foo:smile:bar.html">lipsum</a>
