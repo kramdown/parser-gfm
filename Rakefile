@@ -43,7 +43,7 @@ spec = Gem::Specification.new do |s|
   s.files = PKG_FILES.to_a
 
   s.require_path = 'lib'
-  s.required_ruby_version = '>= 2.3'
+  s.required_ruby_version = '>= 2.5'
   s.add_dependency 'kramdown', '~> 2.0'
 
   s.author = 'Thomas Leitner'
@@ -69,6 +69,7 @@ task :gemfile do
       source 'https://rubygems.org'
       gemspec
 
+      gem 'gemoji', '~> 3.0'
       gem 'rake', '~> 13.0'
       gem 'minitest', '~> 5.0'
       gem 'rouge', '~> 3.0'

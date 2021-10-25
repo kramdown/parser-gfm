@@ -1,0 +1,3 @@
+gfm_emojis: true
+gfm_emoji_opts:
+  asset_path: "http://example.com/images/"

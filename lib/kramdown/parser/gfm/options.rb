@@ -56,5 +56,36 @@ module Kramdown
       end
     end
 
+    define(:gfm_emojis, Boolean, false, <<~EOF)
+      Enable rendering emoji amidst GitHub Flavored Markdown.
+
+      NOTE: This feature depends on additional gem(s) that will have to be
+      installed and managed separately.
+
+      Dependencies:
+        gem 'gemoji', '~> 3.0'
+
+      Default: {}
+      Used by: GFM parser
+    EOF
+
+    define(:gfm_emoji_opts, Object, {}, <<~EOF) do |val|
+      Set options for rendering emoji amidst GitHub Flavored Markdown.
+
+      The value needs to be a hash with key-value pair(s).
+
+      Available key(s) and default value(s):
+        * asset_path: 'https://github.githubassets.com/images/icons/emoji'
+
+      Default: {}
+      Used by: GFM parser
+    EOF
+      val = simple_hash_validator(val, :gfm_emoji_opts)
+      val.keys.each do |k|
+        val[k.kind_of?(String) ? str_to_sym(k) : k] = val.delete(k)
+      end
+      val
+    end
+
   end
 end
