@@ -65,7 +65,7 @@ module Kramdown
       Dependencies:
         gem 'gemoji', '~> 3.0'
 
-      Default: {}
+      Default: false
       Used by: GFM parser
     EOF
 
@@ -74,8 +74,17 @@ module Kramdown
 
       The value needs to be a hash with key-value pair(s).
 
-      Available key(s) and default value(s):
-        * asset_path: 'https://github.githubassets.com/images/icons/emoji'
+      Available key(s):
+
+        * asset_path:
+
+          The remote location of emoji assets that will be prefixed to emoji
+          file path. Gemoji 3 has the file path set to 'unicode/[emoji-filename]'.
+
+          Defaults to 'https://github.githubassets.com/images/icons/emoji'.
+
+          Therefore the absolute path to an emoji file would be:
+          'https://github.githubassets.com/images/icons/emoji/unicode/[emoji-filename]'
 
       Default: {}
       Used by: GFM parser

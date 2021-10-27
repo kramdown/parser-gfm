@@ -30,9 +30,10 @@ At the moment this parser is based on the kramdown parser, with the following ch
 * Support for fenced code blocks using three or more backticks has been added.
 * Hard line breaks in paragraphs are enforced by default (see option `hard_wrap`).
 * ATX headers need a whitespace character after the hash signs.
-* Strikethroughs can be created using two tildes surrounding a piece of text
+* Strikethroughs can be created using two tildes surrounding a piece of text.
 * Blank lines between paragraphs and other block elements are not needed by default (see option
-  `gfm_quirks`)
+  `gfm_quirks`).
+* Render emojis used at GitHub .
 
 Please note that the GFM parser tries to mimic the parser used at GitHub which means that for some
 special cases broken behaviour is the expected behaviour.
@@ -78,6 +79,27 @@ The GFM parser provides the following options:
     Disables automatic conversion of some characters into their corresponding typographic symbols
     (like -- to em-dash etc). This helps to achieve results closer to what GitHub Flavored Markdown
     produces.
+
+* `gfm_emojis`: Enables rendering emoji amidst GFM (default: `false`)
+
+  Usage requires `gem "gemoji", "~> 3.0"` that will have to be installed and managed separately
+  either directly or via your Gemfile.
+
+* `gfm_emoji_opts`: Configuration for rendering emoji amidst GFM (default: `{}`)
+
+  The value has to be mapping of key-value pairs.
+
+  Valid option(s):
+
+  * `asset_path`
+
+    The remote location of emoji assets that will be prefixed to emoji file path. Gemoji 3 has
+    the file path set to `unicode/[emoji-filename]`.
+
+    Defaults to `https://github.githubassets.com/images/icons/emoji`.
+
+    Therefore the absolute path to an emoji file would be:
+    `https://github.githubassets.com/images/icons/emoji/unicode/[emoji-filename]`
 
 
 ## Development
