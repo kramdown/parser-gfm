@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-require 'kramdown'
-require_relative 'lib/kramdown/parser/gfm/version'
+require_relative 'lib/kramdown/parser/gfm_version'
 
 Gem::Specification.new do |s|
   s.name     = 'kramdown-parser-gfm'
-  s.version  = Kramdown::Parser::GFM::VERSION
+  s.version  = Kramdown::Parser::GFM_VERSION
   s.authors  = ['Thomas Leitner']
   s.email    = ['t_leitner@gmx.at']
   s.homepage = 'https://github.com/kramdown/parser-gfm'

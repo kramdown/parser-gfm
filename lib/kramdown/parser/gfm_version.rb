@@ -9,10 +9,6 @@
 
 module Kramdown
   module Parser
-    class GFM < ::Kramdown::Parser::Kramdown
-
-      VERSION = '1.1.0'
-
-    end
+    GFM_VERSION = '1.1.0'
   end
 end

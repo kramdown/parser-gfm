@@ -11,12 +11,15 @@ require 'kramdown/options'
 require 'kramdown/parser/kramdown'
 
 require_relative 'gfm/options'
+require_relative 'gfm_version'
 
 module Kramdown
   module Parser
 
     # This class provides a parser implementation for the GFM dialect of Markdown.
-    class GFM < ::Kramdown::Parser::Kramdown
+    class GFM < Kramdown::Parser::Kramdown
+
+      VERSION = Parser::GFM_VERSION
 
       EXTENSIONS = {
         emoji: 'gfm/emoji_parser',
@@ -241,5 +244,3 @@ module Kramdown
     end
   end
 end
-
-require_relative 'gfm/version'
