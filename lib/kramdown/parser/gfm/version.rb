@@ -8,6 +8,11 @@
 #
 
 module Kramdown
-  # A Hack to allow loading the gemspec without installing kramdown gem beforehand.
-  GFM_PARSER_VERSION = '1.1.0'
+  module Parser
+    class GFM < ::Kramdown::Parser::Kramdown
+
+      VERSION = '1.1.0'
+
+    end
+  end
 end
