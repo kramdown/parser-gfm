@@ -40,7 +40,7 @@ Gem::PackageTask.new(spec) do |pkg|
   pkg.need_tar = true
 end
 
-task :gemspec_test do
+task :test_gemspec do
   puts spec.to_ruby
 end
 
